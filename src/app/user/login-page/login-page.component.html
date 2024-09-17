@@ -1,0 +1,21 @@
+<main>
+  <div class="home" *ngIf="!(afAuth.authState | async)">
+
+    <h1>Trello Boards</h1>
+    <h3>made with love using Angular & Firebase</h3>
+    <p>To use the app, you must sign up using the Google account</p>
+    <img src="/assets/google-logo.svg" alt="google sign in">
+    <button mat-raised-button color="primary" appGoogleSignin>Google Sign In</button>
+  </div>
+  <div class="home" *ngIf="afAuth.authState|async as user">
+    <p>You're currently signed in as <strong>{{user.displayName}}</strong></p>
+
+
+    <!--TODO show user profile image from the google, currently its giving a 403 error code -->
+
+    <!-- <img [src]="user.photoURL" alt="">
+    <p>{{user.photoURL}}</p> -->
+
+    <button class="logout" mat-raised-button (click)="afAuth.signOut()" color="primary">Sign out</button>
+  </div>
+</main>
